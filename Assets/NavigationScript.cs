@@ -8,7 +8,7 @@ public class NavigationScript : MonoBehaviour
     [Header("Attack Settings")]
     [SerializeField] BoxCollider m_AttackCollider;
     [SerializeField] float m_AttackCoolDown = 3f;
-
+    DamageSystem m_DamageSystem;
     [Header("References")]
     NavMeshAgent m_Agent;
     Animator m_Animator;
@@ -21,6 +21,8 @@ public class NavigationScript : MonoBehaviour
         // 必要なコンポーネントを取得
         m_Agent = GetComponent<NavMeshAgent>();
         m_Animator = GetComponent<Animator>();
+        m_DamageSystem = GetComponent<DamageSystem>();
+
         if (m_AttackCollider == null)
         {
             Debug.LogError("Attack Collider is not assigned!");
@@ -58,6 +60,10 @@ public class NavigationScript : MonoBehaviour
             m_Animator.SetBool("IsRun", false);
             Attack();
         }
+        if (m_DamageSystem.GetHealth() <= 0)
+        {
+            m_Animator.SetBool("Death", true);
+        }
     }
 
     private GameObject GetClosestTarget()
@@ -94,6 +100,7 @@ public class NavigationScript : MonoBehaviour
         {
             m_Animator.SetTrigger("Attack");
             m_LastAttackTime = Time.time;
+            
         }
     }
 }
