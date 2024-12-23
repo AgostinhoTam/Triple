@@ -6,7 +6,6 @@ public class Camera : MonoBehaviour
 {
     public Transform player; // プレイヤーのTransform
     public float smoothSpeed = 0.125f; // カメラ移動のスムーズ速度
-    public Vector3 offset; // プレイヤーに対するオフセット
 
     private bool isCameraLocked = false; // カメラが固定されているかどうか
     private Vector3 lockedPosition; // 固定する位置
@@ -48,16 +47,16 @@ public class Camera : MonoBehaviour
         {
             // カメラが固定されている場合、固定位置に移動
             targetPosition = new Vector3(
-                lockedPosition.x + offset.x,
-                lockedPosition.y + offset.y,
-                lockedPosition.z + offset.z
+                lockedPosition.x ,
+                lockedPosition.y ,
+                lockedPosition.z 
             );
         }
         else if (player != null)
         {
             // プレイヤーを追従する場合 (X軸のみ移動)
             targetPosition = new Vector3(
-                player.position.x + offset.x,
+                player.position.x,
                 transform.position.y,
                 transform.position.z
             );
