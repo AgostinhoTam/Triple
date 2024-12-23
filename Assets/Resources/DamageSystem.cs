@@ -13,10 +13,18 @@ public class DamageSystem : MonoBehaviour
         m_CurrentHP = m_MaxHP;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) // 1キーを押した場合
+        {
+            TakeDamage(1); // デバッグ用ダメージを適用
+        }
+    }
     public void TakeDamage(float damage)
     {
         m_CurrentHP -= damage;
         Debug.Log(m_CurrentHP);
+
     }
 
     public float GetHealth()
@@ -24,4 +32,13 @@ public class DamageSystem : MonoBehaviour
         return m_CurrentHP;
     }
 
+    public float GetMaxHealth()
+    {
+        return m_MaxHP;
+    }
+
+    public void SetHealth(float health)
+    {
+        m_CurrentHP = health;
+    }
 }
