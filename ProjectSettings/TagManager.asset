@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - CameraField
+  - EnemyAttack
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - PostProcess
-  - CameraField
+  - Enemy
+  - 
   - 
   - 
   - 

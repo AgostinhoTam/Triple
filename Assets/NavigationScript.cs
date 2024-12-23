@@ -8,7 +8,7 @@ public class NavigationScript : MonoBehaviour
     [Header("Attack Settings")]
     [SerializeField] BoxCollider m_AttackCollider;
     [SerializeField] float m_AttackCoolDown = 3f;
-
+    DamageSystem m_DamageSystem;
     [Header("References")]
     NavMeshAgent m_Agent;
     Animator m_Animator;
@@ -21,6 +21,8 @@ public class NavigationScript : MonoBehaviour
         // 必要なコンポーネントを取得
         m_Agent = GetComponent<NavMeshAgent>();
         m_Animator = GetComponent<Animator>();
+        m_DamageSystem = GetComponent<DamageSystem>();
+
         if (m_AttackCollider == null)
         {
             Debug.LogError("Attack Collider is not assigned!");
@@ -39,7 +41,6 @@ public class NavigationScript : MonoBehaviour
     void Update()
     {
         if (m_Agent == null || m_Animator == null || m_AttackCollider == null) return;
-
         if (m_TargetObjectList.Count <= 0) return;
 
         // 最も近いターゲットを追尾
@@ -48,7 +49,7 @@ public class NavigationScript : MonoBehaviour
         {
             m_Agent.destination = closestTarget.transform.position;
         }
-        if (m_Agent.remainingDistance >= m_Agent.stoppingDistance)
+        if (m_Agent.remainingDistance >= m_Agent.stoppingDistance && m_Agent.velocity.magnitude >=0.1f)
         {
             m_Animator.SetBool("IsRun", true);
         }
@@ -57,6 +58,14 @@ public class NavigationScript : MonoBehaviour
         {
             m_Animator.SetBool("IsRun", false);
             Attack();
+        }
+        if (m_DamageSystem.GetHealth() <= 0)
+        {
+            m_Animator.SetTrigger("Dead");
+            enabled = false;
+            // Deadアニメーションが再生されたら停止
+            //StartCoroutine(StopAnimatorAfterDead());
+            Destroy(gameObject, 2);
         }
     }
 
@@ -94,6 +103,8 @@ public class NavigationScript : MonoBehaviour
         {
             m_Animator.SetTrigger("Attack");
             m_LastAttackTime = Time.time;
+            
         }
     }
+
 }
