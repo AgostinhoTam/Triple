@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3889197604265848671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 674509227019890546}
+  - component: {fileID: 7291129819991099854}
+  m_Layer: 6
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &674509227019890546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3889197604265848671}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.075}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6225630378965265474}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7291129819991099854
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3889197604265848671}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6958635930613125593
 GameObject:
   m_ObjectHideFlags: 0
@@ -17,6 +70,7 @@ GameObject:
   - component: {fileID: 3074338782549009172}
   - component: {fileID: 5523154324147388616}
   - component: {fileID: 7756336417914842307}
+  - component: {fileID: 8653848399034028152}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -35,9 +89,10 @@ Transform:
   m_LocalPosition: {x: -2, y: -0.05, z: 3.2082772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 674509227019890546}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1102936219686448672
 MeshFilter:
@@ -163,9 +218,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9fb857ead09c04faa6911e4cdf5706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mpManager: {fileID: 0}
+  mpManager: {fileID: 7756336417914842307}
+  hpui: {fileID: 8653848399034028152}
   attackSettings:
-  - attackArea: {fileID: 0}
+  - attackArea: {fileID: 3889197604265848671}
     activationKey: 113
     attackAreaTime: 1
     gaugeConsumption: 10
@@ -198,3 +254,18 @@ MonoBehaviour:
   maxMp: 100
   mpBarSlider: {fileID: 0}
   smoothSpeed: 5
+--- !u!114 &8653848399034028152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958635930613125593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c63613634d15f4fa6b0a22c3c37df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: {fileID: 5523154324147388616}
+  hpBarSlider: {fileID: 0}
+  smoothSpeed: 8
