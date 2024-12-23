@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public Mp mpManager;
     DamageSystem m_DamageSystem;
     // UŒ‚İ’è—pƒNƒ‰ƒX
     [System.Serializable]
@@ -50,6 +51,7 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetKeyDown(attack.activationKey) && attack.attackArea != null)
             {
                 StartCoroutine(ActivateAttackArea(attack));
+                mpManager.ChangeMp(-attack.gaugeConsumption);
             }
         }
     }
