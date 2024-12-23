@@ -8,6 +8,8 @@ public class NavigationScript : MonoBehaviour
     [Header("Attack Settings")]
     [SerializeField] BoxCollider m_AttackCollider;
     [SerializeField] float m_AttackCoolDown = 3f;
+    [SerializeField] GameObject m_HealItem;
+    [SerializeField] GameObject m_MPItem;
     DamageSystem m_DamageSystem;
     [Header("References")]
     NavMeshAgent m_Agent;
@@ -65,6 +67,15 @@ public class NavigationScript : MonoBehaviour
             enabled = false;
             // Deadアニメーションが再生されたら停止
             //StartCoroutine(StopAnimatorAfterDead());
+            int chance = Random.Range(0, 100);
+            if (chance < 20)
+            {
+                Instantiate(m_HealItem, transform.position, Quaternion.identity);
+            }
+            else if (chance >= 40 && chance <=75)
+            {
+                Instantiate(m_MPItem, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject, 2);
         }
     }
