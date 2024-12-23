@@ -64,7 +64,7 @@ public class PlayerAttack : MonoBehaviour
                 continue;
 
             // 指定キーが押された場合に攻撃処理を開始
-            if (Input.GetKeyDown(attack.activationKey) && attack.attackArea != null)
+            if (Input.GetKeyDown(attack.activationKey) && attack.attackArea != null && mpManager.GetCurrentMp() != 0)
             {
                 StartCoroutine(ActivateAttackArea(attack));
                 mpManager.ChangeMp(-attack.gaugeConsumption);
