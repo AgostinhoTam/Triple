@@ -15,14 +15,11 @@ public class DamageSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) // 1キーを押した場合
-        {
-            TakeDamage(1); // デバッグ用ダメージを適用
-        }
     }
     public void TakeDamage(float damage)
     {
         m_CurrentHP -= damage;
+        m_CurrentHP = Mathf.Clamp(m_CurrentHP, -1, m_MaxHP);
         Debug.Log(m_CurrentHP);
 
     }
