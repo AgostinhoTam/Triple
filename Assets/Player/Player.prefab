@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 5158333527317348919}
   - component: {fileID: -6415316584071904113}
   - component: {fileID: 5285498750872725740}
+  - component: {fileID: 3074338782549009172}
+  - component: {fileID: 5523154324147388616}
+  - component: {fileID: 7756336417914842307}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -148,3 +151,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   dodgeTime: 0.3
+--- !u!114 &3074338782549009172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958635930613125593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9fb857ead09c04faa6911e4cdf5706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mpManager: {fileID: 0}
+  attackSettings:
+  - attackArea: {fileID: 0}
+    activationKey: 113
+    attackAreaTime: 1
+    gaugeConsumption: 10
+    isActive: 0
+--- !u!114 &5523154324147388616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958635930613125593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea97f9d6ccfc7f44862281113988843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxHP: 3
+--- !u!114 &7756336417914842307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6958635930613125593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f242336cf721a1e4db76c2c82fd4e1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMp: 100
+  mpBarSlider: {fileID: 0}
+  smoothSpeed: 5
