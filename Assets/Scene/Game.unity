@@ -4986,6 +4986,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 825713385163250751, guid: 011617a7bab2c99479409c9f9e20c4a5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.21875
+      objectReference: {fileID: 0}
     - target: {fileID: 2975555245169495578, guid: 011617a7bab2c99479409c9f9e20c4a5, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -7001,6 +7005,10 @@ PrefabInstance:
       propertyPath: hitEffectPrefab
       value: 
       objectReference: {fileID: 7774535050688155141, guid: 82353afeb2b9d1243a2e3d51efe8e31e, type: 3}
+    - target: {fileID: 3074338782549009172, guid: dbbf2bc25a47a0d44973715ae8668164, type: 3}
+      propertyPath: attackSettings.Array.data[1].attackArea
+      value: 
+      objectReference: {fileID: 6635617374523142290}
     - target: {fileID: 4766454745588491364, guid: dbbf2bc25a47a0d44973715ae8668164, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7098,6 +7106,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbbf2bc25a47a0d44973715ae8668164, type: 3}
+--- !u!1 &6635617374523142290 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1699440954760053027, guid: dbbf2bc25a47a0d44973715ae8668164, type: 3}
+  m_PrefabInstance: {fileID: 6635617374523142289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7526654041371623376
 PrefabInstance:
   m_ObjectHideFlags: 0
