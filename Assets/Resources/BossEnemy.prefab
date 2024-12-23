@@ -418,6 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AttackCollider: {fileID: 1443668386951448058}
+  m_AttackCollider1: {fileID: 7018528447696625211}
   m_AttackCoolDown: 3
 --- !u!1 &1457912190622302
 GameObject:
@@ -966,7 +967,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -1018,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82d6df623f31b843b0d8b7ee24f9c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 3
 --- !u!65 &1443668386951448058
 BoxCollider:
   m_ObjectHideFlags: 0

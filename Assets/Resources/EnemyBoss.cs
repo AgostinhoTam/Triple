@@ -7,6 +7,7 @@ public class EnemyBoss : MonoBehaviour
 {
     [Header("Attack Settings")]
     [SerializeField] BoxCollider m_AttackCollider;
+    [SerializeField] BoxCollider m_AttackCollider1;
     [SerializeField] float m_AttackCoolDown = 3f;
     DamageSystem m_DamageSystem;
 
@@ -29,6 +30,11 @@ public class EnemyBoss : MonoBehaviour
             Debug.LogError("Attack Collider is not assigned!");
             return;
         }
+        if(m_AttackCollider1 == null)
+        {
+            Debug.LogError("Attack Collider is not assigned!");
+            return;
+        }
         m_AttackCollider.isTrigger = true;
         m_AttackCollider.enabled = false;
         // プレイヤーを取得
@@ -41,7 +47,7 @@ public class EnemyBoss : MonoBehaviour
 
     void Update()
     {
-        if (m_Agent == null || m_Animator == null || m_AttackCollider == null) return;
+        if (m_Agent == null || m_Animator == null || m_AttackCollider == null || m_AttackCollider1 == null) return;
         if (m_TargetObjectList.Count <= 0) return;
 
         // 最も近いターゲットを追尾
@@ -109,6 +115,15 @@ public class EnemyBoss : MonoBehaviour
     {
         m_AttackCollider.enabled = false;
     }
+    private void EnableAttack1()
+    {
+        m_AttackCollider1.enabled = true;
+    }
+    private void DisableAttack1()
+    {
+        m_AttackCollider1.enabled = false;
+    }
+
     private void Attack()
     {
 
