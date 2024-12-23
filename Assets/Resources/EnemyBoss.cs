@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyBoss : MonoBehaviour
 {
@@ -9,12 +10,17 @@ public class EnemyBoss : MonoBehaviour
     [SerializeField] BoxCollider m_AttackCollider;
     [SerializeField] BoxCollider m_AttackCollider1;
     [SerializeField] float m_AttackCoolDown = 3f;
+
     DamageSystem m_DamageSystem;
 
     [Header("References")]
     NavMeshAgent m_Agent;
     Animator m_Animator;
     List<GameObject> m_TargetObjectList;
+
+    [Header("Scene Change Settings")]
+    public float sceneChangeDelay = 1f; // シーン切り替え前の待機時間
+    public string clearSceneName = "GameClear"; // 切り替えるシーン名
 
     float m_LastAttackTime = 0f;
     bool m_IsAttacking = false;
@@ -24,6 +30,7 @@ public class EnemyBoss : MonoBehaviour
         m_Agent = GetComponent<NavMeshAgent>();
         m_Animator = GetComponent<Animator>();
         m_DamageSystem = GetComponent<DamageSystem>();
+
 
         if (m_AttackCollider == null)
         {
@@ -83,6 +90,7 @@ public class EnemyBoss : MonoBehaviour
         {
             m_Animator.SetTrigger("Dead");
             enabled = false;
+            StartCoroutine(HandleBossDeath());
             Destroy(gameObject, 2);
         }
     }
@@ -143,6 +151,14 @@ public class EnemyBoss : MonoBehaviour
                     m_LastAttackTime = Time.time;
                
                 }
+    }
+    // ボス死亡後の処理
+    private IEnumerator HandleBossDeath()
+    {
+        yield return new WaitForSeconds(sceneChangeDelay); // 指定時間待機
+
+        // 指定されたシーンに切り替え
+        SceneManager.LoadScene(clearSceneName);
     }
 
 }

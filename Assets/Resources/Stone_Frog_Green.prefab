@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  m_AttackEffect: {fileID: 7774535050688155141, guid: 82353afeb2b9d1243a2e3d51efe8e31e, type: 3}
 --- !u!1 &3855108966491878616
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttackCollider: {fileID: 3146463818066495367}
   m_AttackCoolDown: 2
+  m_HealItem: {fileID: 9045333924827102921, guid: e2484b2df5f0896428b914f9edee17b8, type: 3}
+  m_MPItem: {fileID: 7804429845544332430, guid: d21beb5e8b2b3064081cd604303b731c, type: 3}
 --- !u!95 &-8984864082321788026
 Animator:
   serializedVersion: 5
