@@ -1,65 +1,84 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
-    // UŒ‚İ’è—pƒNƒ‰ƒX
+    public float maxMp; // MPã®æœ€å¤§å€¤
+    protected float curMp; // ç¾åœ¨ã®MP
+    public Slider mpBarSlider; // MPãƒãƒ¼ã®ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
+    public float smoothSpeed = 5f; // ã‚²ãƒ¼ã‚¸ãŒå¤‰åŒ–ã™ã‚‹é€Ÿåº¦
+
+    // æ”»æ’ƒè¨­å®šç”¨ã‚¯ãƒ©ã‚¹
     [System.Serializable]
     public class AttackSetting
     {
-        public GameObject attackArea; // UŒ‚”ÍˆÍƒIƒuƒWƒFƒNƒg
-        public KeyCode activationKey; // UŒ‚‚ğ”­“®‚·‚éƒL[
-        public float attackAreaTime; // UŒ‚”ÍˆÍ‚Ì‘±ŠÔ
-        public float gaugeConsumption; // ƒQ[ƒW‚Ì–ˆ•bÁ”ï—Ê
-        public bool isActive = false; // UŒ‚”ÍˆÍ‚ªƒAƒNƒeƒBƒu’†‚©‚Ç‚¤‚© // UŒ‚”ÍˆÍ‚ªƒAƒNƒeƒBƒu’†‚©‚Ç‚¤‚©
+        public GameObject attackArea; // æ”»æ’ƒç¯„å›²ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+        public KeyCode activationKey; // æ”»æ’ƒã‚’ç™ºå‹•ã™ã‚‹ã‚­ãƒ¼
+        public float attackAreaTime; // æ”»æ’ƒç¯„å›²ã®æŒç¶šæ™‚é–“
+        public float mpConsumption; // ã‚²ãƒ¼ã‚¸ã®æ¶ˆè²»é‡
+        public bool isActive = false; // æ”»æ’ƒç¯„å›²ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ä¸­ã‹ã©ã†ã‹
     }
 
-    public List<AttackSetting> attackSettings = new List<AttackSetting>(); // UŒ‚İ’è‚ÌƒŠƒXƒg
+    public List<AttackSetting> attackSettings = new List<AttackSetting>(); // æ”»æ’ƒè¨­å®šã®ãƒªã‚¹ãƒˆ
 
-    // Start is called before the first frame update
     void Start()
     {
-        // UŒ‚”ÍˆÍ‚ğ‰Šúó‘Ô‚Å”ñƒAƒNƒeƒBƒu‚Éİ’è
+        // æ”»æ’ƒç¯„å›²ã‚’åˆæœŸçŠ¶æ…‹ã§éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«è¨­å®š
         foreach (var attack in attackSettings)
         {
             if (attack.attackArea != null)
                 attack.attackArea.SetActive(false);
         }
+
+        curMp = maxMp; // ç¾åœ¨ã®MPã‚’æœ€å¤§å€¤ã«è¨­å®š
     }
 
-    // Update is called once per frame
     void Update()
     {
-        HandleAttacks();
+        HandleAttacks(); // æ”»æ’ƒå‡¦ç†
+        CheckMp(); // MPãƒãƒ¼ã®æ›´æ–°
     }
 
-    // UŒ‚ˆ—
+    // æ”»æ’ƒå‡¦ç†
     void HandleAttacks()
     {
         foreach (var attack in attackSettings)
         {
-            // UŒ‚”ÍˆÍ‚ªƒAƒNƒeƒBƒuó‘Ô‚È‚ç“ü—Í‚ğ–³‹
+            // æ”»æ’ƒç¯„å›²ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ä¸­ã®å ´åˆã¯å…¥åŠ›ã‚’ç„¡è¦–
             if (attack.isActive)
                 continue;
 
-            // w’èƒL[‚ª‰Ÿ‚³‚ê‚½ê‡‚ÉUŒ‚ˆ—‚ğŠJn
+            // æŒ‡å®šã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã«æ”»æ’ƒå‡¦ç†ã‚’é–‹å§‹
             if (Input.GetKeyDown(attack.activationKey) && attack.attackArea != null)
             {
-                StartCoroutine(ActivateAttackArea(attack));
+                StartCoroutine(ActivateAttackArea(attack)); // æ”»æ’ƒç¯„å›²ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–
+                curMp -= attack.mpConsumption; // MPã‚’æ¶ˆè²»
             }
         }
     }
 
-    // UŒ‚”ÍˆÍ‚ğˆê’èŠÔƒAƒNƒeƒBƒu‰»
+    // æ”»æ’ƒç¯„å›²ã‚’ä¸€å®šæ™‚é–“ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–
     private IEnumerator ActivateAttackArea(AttackSetting attack)
     {
-        attack.isActive = true; // UŒ‚”ÍˆÍ‚ªƒAƒNƒeƒBƒu’†ó‘Ô‚Éİ’è
-        attack.attackArea.SetActive(true); // UŒ‚”ÍˆÍ‚ğƒAƒNƒeƒBƒu‰»
+        attack.isActive = true; // æ”»æ’ƒç¯„å›²ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ä¸­ã«è¨­å®š
+        attack.attackArea.SetActive(true); // æ”»æ’ƒç¯„å›²ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–
 
-        yield return new WaitForSeconds(attack.attackAreaTime); // ‘±ŠÔ‘Ò‹@
+        yield return new WaitForSeconds(attack.attackAreaTime); // æŒ‡å®šæ™‚é–“å¾…æ©Ÿ
 
-        attack.attackArea.SetActive(false); // UŒ‚”ÍˆÍ‚ğ”ñƒAƒNƒeƒBƒu‰»
-        attack.isActive = false; // UŒ‚”ÍˆÍ‚ÌƒAƒNƒeƒBƒuó‘Ô‚ğ‰ğœ
+        attack.attackArea.SetActive(false); // æ”»æ’ƒç¯„å›²ã‚’éã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–
+        attack.isActive = false; // ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã‚’è§£é™¤
+    }
+
+    // MPãƒãƒ¼ã®æ›´æ–°
+    public void CheckMp()
+    {
+        if (mpBarSlider != null)
+        {
+            // MPãƒãƒ¼ã‚’ã‚¹ãƒ ãƒ¼ã‚ºã«æ›´æ–°
+            float targetValue = curMp / maxMp; // ç›®æ¨™å€¤
+            mpBarSlider.value = Mathf.Lerp(mpBarSlider.value, targetValue, Time.deltaTime * smoothSpeed); // ã‚¹ãƒ ãƒ¼ã‚ºã«å€¤ã‚’å¤‰åŒ–
+        }
     }
 }
