@@ -13,7 +13,10 @@ public class EnemyAttackCollider : MonoBehaviour
         {
             Debug.Log("Hit Player");
             DamageSystem playerDamageSystem = other.GetComponent<DamageSystem>();
-            playerDamageSystem.TakeDamage(damage);
+            if (playerDamageSystem != null)
+            {
+                playerDamageSystem.TakeDamage(damage);
+            }
         }
         Debug.Log("HitTirgger");
 

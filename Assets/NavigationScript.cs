@@ -62,6 +62,7 @@ public class NavigationScript : MonoBehaviour
         if (m_DamageSystem.GetHealth() <= 0)
         {
             m_Animator.SetTrigger("Dead");
+            enabled = false;
             // Deadアニメーションが再生されたら停止
             //StartCoroutine(StopAnimatorAfterDead());
             Destroy(gameObject, 2);
@@ -106,9 +107,4 @@ public class NavigationScript : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator StopAnimatorAfterDead()
-    {
-        yield return new WaitForSeconds(m_Animator.GetCurrentAnimatorStateInfo(0).length);
-        m_Animator.enabled = false; // Animatorを無効化
-    }
 }
