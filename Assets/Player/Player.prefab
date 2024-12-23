@@ -235,6 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mpManager: {fileID: 7756336417914842307}
   hpui: {fileID: 8653848399034028152}
+  sceneChangeDelay: 1
+  gameOverSceneName: GameOver
   attackSettings:
   - attackArea: {fileID: 3889197604265848671}
     activationKey: 113
@@ -253,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea97f9d6ccfc7f44862281113988843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxHP: 3
+  m_MaxHP: 20
 --- !u!114 &7756336417914842307
 MonoBehaviour:
   m_ObjectHideFlags: 0
