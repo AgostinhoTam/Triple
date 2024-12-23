@@ -4987,8 +4987,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 825713385163250751, guid: 011617a7bab2c99479409c9f9e20c4a5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 825713385163250751, guid: 011617a7bab2c99479409c9f9e20c4a5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.21875
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2975555245169495578, guid: 011617a7bab2c99479409c9f9e20c4a5, type: 3}
       propertyPath: m_Name
@@ -5085,6 +5089,10 @@ PrefabInstance:
     - target: {fileID: 5168948505191795773, guid: 011617a7bab2c99479409c9f9e20c4a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256838963212711722, guid: 011617a7bab2c99479409c9f9e20c4a5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -53.2
       objectReference: {fileID: 0}
     - target: {fileID: 8836091613257002362, guid: 011617a7bab2c99479409c9f9e20c4a5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7048,6 +7056,10 @@ PrefabInstance:
     - target: {fileID: 6225630378965265474, guid: dbbf2bc25a47a0d44973715ae8668164, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756336417914842307, guid: dbbf2bc25a47a0d44973715ae8668164, type: 3}
+      propertyPath: maxMp
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7756336417914842307, guid: dbbf2bc25a47a0d44973715ae8668164, type: 3}
       propertyPath: mpBarSlider
