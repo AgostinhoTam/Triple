@@ -21,7 +21,7 @@ MonoBehaviour:
     value: 0.2
   threshold:
     overrideState: 1
-    value: 1.6
+    value: 0.37
   softKnee:
     overrideState: 0
     value: 0.5
@@ -147,7 +147,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 0
-    value: 1
+    value: 2.5
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
     value: -25
   tint:
     overrideState: 1
-    value: -5
+    value: 5
   colorFilter:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -261,13 +261,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 0.9477458, y: 1, z: 0.9529963, w: 0}
+    value: {x: 1, y: 0.79412234, z: 0.7498464, w: 0}
   gamma:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
   gain:
     overrideState: 1
-    value: {x: 0.99590033, y: 0.7850699, z: 1, w: 0}
+    value: {x: 0.9718997, y: 0.8542174, z: 1, w: 0}
   masterCurve:
     overrideState: 0
     value:
