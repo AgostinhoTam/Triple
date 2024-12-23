@@ -9,12 +9,14 @@ public class EnemyBoss : MonoBehaviour
     [SerializeField] BoxCollider m_AttackCollider;
     [SerializeField] BoxCollider m_AttackCollider1;
     [SerializeField] float m_AttackCoolDown = 3f;
+
     DamageSystem m_DamageSystem;
 
     [Header("References")]
     NavMeshAgent m_Agent;
     Animator m_Animator;
     List<GameObject> m_TargetObjectList;
+
 
     float m_LastAttackTime = 0f;
     bool m_IsAttacking = false;
@@ -24,6 +26,7 @@ public class EnemyBoss : MonoBehaviour
         m_Agent = GetComponent<NavMeshAgent>();
         m_Animator = GetComponent<Animator>();
         m_DamageSystem = GetComponent<DamageSystem>();
+
 
         if (m_AttackCollider == null)
         {

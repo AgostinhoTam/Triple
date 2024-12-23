@@ -952,6 +952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
+  m_AttackEffect: {fileID: 7774535050688155141, guid: 82353afeb2b9d1243a2e3d51efe8e31e, type: 3}
 --- !u!65 &7018528447696625211
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1020,6 +1021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
+  m_AttackEffect: {fileID: 7774535050688155141, guid: 82353afeb2b9d1243a2e3d51efe8e31e, type: 3}
 --- !u!65 &1443668386951448058
 BoxCollider:
   m_ObjectHideFlags: 0
