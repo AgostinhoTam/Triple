@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MpItem : MonoBehaviour
 {
-    public float recoveryAmount = 10f; // 回復量
+    public float recoveryAmount = 30f; // 回復量
 
     // トリガーでプレイヤーと衝突したときにMPを回復
     private void OnTriggerEnter(Collider other)
