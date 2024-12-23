@@ -28,6 +28,12 @@ public class Mp : MonoBehaviour
     public void ChangeMp(float amount)
     {
         curMp = Mathf.Clamp(curMp + amount, 0, maxMp); // MPの範囲を制限
+        Debug.Log(curMp);
+        if (curMp == maxMp)
+        {
+            mpBarSlider.value = 1.0f;
+        }
+        UpdateMpBar(); // MPバーを更新
     }
 
     // 現在のMPを取得するメソッド
