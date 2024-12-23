@@ -6,6 +6,9 @@ public class PlayerAttack : MonoBehaviour
 {
     public Mp mpManager;
     DamageSystem m_DamageSystem;
+
+    public HpUi hpui;
+
     // UŒ‚İ’è—pƒNƒ‰ƒX
     [System.Serializable]
     public class AttackSetting
@@ -35,7 +38,12 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         HandleAttacks();
-        if(m_DamageSystem.GetHealth() <= 0) {Destroy(gameObject); return; }
+        if(m_DamageSystem.GetHealth() <= 0) 
+        {
+            hpui.ZeroHp(); 
+            Destroy(gameObject); 
+            return; 
+        }
     }
 
     // UŒ‚ˆ—
