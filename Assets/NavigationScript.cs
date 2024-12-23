@@ -88,16 +88,6 @@ public class NavigationScript : MonoBehaviour
     {
         m_AttackCollider.enabled = false;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Trigger");
-        Debug.Log(other.gameObject.name);
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("HitPlayer");
-        }
-    }
     private void Attack()
     {
         if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))

@@ -6,14 +6,14 @@ public class EnemyAttackCollider : MonoBehaviour
 {
     [SerializeField] float damage = 1f;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-
-        Debug.Log(other.tag);
-        Debug.Log("HitTirgger");
-        if (other.CompareTag("Player"))
+        Debug.Log(other.gameObject.layer);
+        if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Debug.Log("Hit Player");
         }
+        Debug.Log("HitTirgger");
+
     }
 }
