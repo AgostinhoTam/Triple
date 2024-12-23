@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class PlayerAttack : MonoBehaviour
     DamageSystem m_DamageSystem;
 
     public HpUi hpui;
+
+    // シーン切り替えに関する設定
+    [Header("Scene Change Settings")]
+    public float sceneChangeDelay = 1f; // シーン切り替えの前の待機時間
+    public string gameOverSceneName = "GameOver"; // 切り替えるシーン名
 
     // 攻撃設定用クラス
     [System.Serializable]
@@ -17,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
         public KeyCode activationKey; // 攻撃を発動するキー
         public float attackAreaTime; // 攻撃範囲の持続時間
         public float gaugeConsumption; // ゲージの毎秒消費量
-        public bool isActive = false; // 攻撃範囲がアクティブ中かどうか // 攻撃範囲がアクティブ中かどうか
+        public bool isActive = false; // 攻撃範囲がアクティブ中かどうか
     }
 
     public List<AttackSetting> attackSettings = new List<AttackSetting>(); // 攻撃設定のリスト
@@ -38,11 +44,13 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         HandleAttacks();
-        if(m_DamageSystem.GetHealth() <= 0) 
+
+        // プレイヤーのHPが0以下の場合
+        if (m_DamageSystem.GetHealth() <= 0)
         {
-            hpui.ZeroHp(); 
-            Destroy(gameObject); 
-            return; 
+            hpui.ZeroHp(); // HP UIをゼロにする処理
+            StartCoroutine(HandlePlayerDeath()); // プレイヤー死亡処理をコルーチンで実行
+            return;
         }
     }
 
@@ -74,5 +82,14 @@ public class PlayerAttack : MonoBehaviour
 
         attack.attackArea.SetActive(false); // 攻撃範囲を非アクティブ化
         attack.isActive = false; // 攻撃範囲のアクティブ状態を解除
+    }
+
+    // プレイヤーが死亡した際の処理
+    private IEnumerator HandlePlayerDeath()
+    {
+        yield return new WaitForSeconds(sceneChangeDelay); // 指定した時間だけ待機
+
+        // 指定されたシーンに移動
+        SceneManager.LoadScene(gameOverSceneName);
     }
 }
