@@ -6,7 +6,6 @@ public class DamageSystem : MonoBehaviour
 {
     private float m_CurrentHP;
     [SerializeField] float m_MaxHP;
-    [SerializeField] float m_AtkDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +24,4 @@ public class DamageSystem : MonoBehaviour
         return m_CurrentHP;
     }
 
-    public float GetAtkDmg()
-    {
-        return m_AtkDamage;
-    }
 }

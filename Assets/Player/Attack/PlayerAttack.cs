@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    DamageSystem m_DamageSystem;
     // 攻撃設定用クラス
     [System.Serializable]
     public class AttackSetting
@@ -20,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_DamageSystem = GetComponent<DamageSystem>();
         // 攻撃範囲を初期状態で非アクティブに設定
         foreach (var attack in attackSettings)
         {
@@ -32,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         HandleAttacks();
+        if(m_DamageSystem.GetHealth() <= 0) {Destroy(gameObject); return; }
     }
 
     // 攻撃処理

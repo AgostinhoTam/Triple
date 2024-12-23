@@ -41,7 +41,6 @@ public class NavigationScript : MonoBehaviour
     void Update()
     {
         if (m_Agent == null || m_Animator == null || m_AttackCollider == null) return;
-
         if (m_TargetObjectList.Count <= 0) return;
 
         // 最も近いターゲットを追尾
@@ -50,7 +49,7 @@ public class NavigationScript : MonoBehaviour
         {
             m_Agent.destination = closestTarget.transform.position;
         }
-        if (m_Agent.remainingDistance >= m_Agent.stoppingDistance)
+        if (m_Agent.remainingDistance >= m_Agent.stoppingDistance && m_Agent.velocity.magnitude >=0.1f)
         {
             m_Animator.SetBool("IsRun", true);
         }
@@ -62,7 +61,10 @@ public class NavigationScript : MonoBehaviour
         }
         if (m_DamageSystem.GetHealth() <= 0)
         {
-            m_Animator.SetBool("Death", true);
+            m_Animator.SetTrigger("Dead");
+            // Deadアニメーションが再生されたら停止
+            //StartCoroutine(StopAnimatorAfterDead());
+            Destroy(gameObject, 2);
         }
     }
 
@@ -102,5 +104,11 @@ public class NavigationScript : MonoBehaviour
             m_LastAttackTime = Time.time;
             
         }
+    }
+
+    private System.Collections.IEnumerator StopAnimatorAfterDead()
+    {
+        yield return new WaitForSeconds(m_Animator.GetCurrentAnimatorStateInfo(0).length);
+        m_Animator.enabled = false; // Animatorを無効化
     }
 }
